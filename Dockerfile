@@ -9,6 +9,8 @@ RUN npm install
 
 COPY ./ /app/
 
+RUN CI=true npm test
+
 RUN npm run build
 
 
