@@ -1,22 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import BetInputs from "./components/BetInputs";
+import ArbOutputs from "./components/ArbOutputs";
+import { useState } from "react";
 
 function App() {
+  const [fav, setFav] = useState("");
+  const [dog, setDog] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e);
+    setFav(e.target["favorite"].value);
+    setDog(e.target["dog"].value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Can we Arb?</h1>
+        <BetInputs onSubmit={(e) => handleSubmit(e)} />
+        {fav && dog && <ArbOutputs fav={fav} dog={dog} />}
       </header>
     </div>
   );
